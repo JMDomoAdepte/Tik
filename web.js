@@ -18,10 +18,7 @@ var server = http.createServer(function(req, res) {
 		    }
 		    var $ = require('cheerio').load(body, { xmlMode: true, ignoreWhitespace: false, lowerCaseTags: false });
 		    var traffic = $('html.no-maps-mini body.kui div#main.cs div#inner div#page div div#panel.panel-width div#spsizer.cs div div#opanel4.opanel div#panel4.subpanel div#panel_dir.dir div#dir_altroutes.noprint ol#dir_altroutes_body.dir-altroute-mult li#altroute_0.dir-altroute div.dir-altroute-inner div.altroute-aux span').text() ;
-		    traffic = traffic.replace('min', 'minutes');		  
-			    app.get('/', function(req, res) {
-			    res.send(traffic);
-				});		
+			    res.write(traffic);
 		  });   
         res.write('Vous partez de ' + params['debut'] + 'et vous allez à ' + params['fin']);
     }
